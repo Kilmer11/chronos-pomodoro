@@ -1,0 +1,15 @@
+.form,
+.formRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.form {
+  gap: 2.4rem;
+}
+
+.formRow {
+  gap: 1.6rem;
+}
