@@ -16,15 +16,15 @@
   font-size: 4.2rem;
   font-weight: bold;
   text-decoration: none;
-  color: var(--link-color);
   transition: all 200ms ease-in-out;
-}
-
-.logoLink:hover {
-  color: var(--link-hover);
+  color: var(--primary);
 }
 
 .logoLink svg {
   width: 6.4rem;
   height: 6.4rem;
+}
+
+.logoLink:hover {
+  filter: brightness(80%);
 }

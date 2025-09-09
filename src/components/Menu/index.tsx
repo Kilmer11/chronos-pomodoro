@@ -1,18 +1,27 @@
-import { HistoryIcon, HouseIcon, SettingsIcon, SunIcon } from 'lucide-react';
+import React from 'react';
 import { useEffect, useState, type ReactElement } from 'react';
+import {
+  HistoryIcon,
+  HouseIcon,
+  MoonIcon,
+  SettingsIcon,
+  SunIcon,
+} from 'lucide-react';
 import styles from './styles.module.css';
 
-type AvailableTheme = 'dark' | 'light';
+type AvailableThemes = 'dark' | 'light';
 
 type MenuElements = {
-  element: ReactElement;
+  element: ReactElement | { dark: ReactElement; light: ReactElement };
   ariaLabel: string;
   title: string;
   func?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 };
 
 export function Menu() {
-  const [theme, setTheme] = useState<AvailableTheme>('dark');
+  const [theme, setTheme] = useState<AvailableThemes>(() => {
+    return (localStorage.getItem('theme') as AvailableThemes) || 'dark';
+  });
 
   function handleThemeChange(
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
@@ -24,6 +33,7 @@ export function Menu() {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
   }, [theme]);
 
   const elements: MenuElements[] = [
@@ -39,7 +49,7 @@ export function Menu() {
     },
     { element: <SettingsIcon />, ariaLabel: 'Settings', title: 'Settings' },
     {
-      element: <SunIcon />,
+      element: { dark: <SunIcon />, light: <MoonIcon /> },
       ariaLabel: 'Change Theme',
       title: 'Change Theme',
       func: handleThemeChange,
@@ -57,7 +67,7 @@ export function Menu() {
           title={title}
           onClick={func}
         >
-          {element}
+          {React.isValidElement(element) ? element : element[theme]}
         </a>
       ))}
     </nav>
