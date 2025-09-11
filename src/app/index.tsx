@@ -1,8 +1,7 @@
-import './App.css';
-import './styles/global.css';
-import './styles/theme.css';
+import '../shared/styles/global.css';
+import '../shared/styles/theme.css';
 
-import { Home } from './Pages/Home';
+import { Home } from '../Pages/Home';
 import { TaskContextProvider } from './contexts/TaskContext';
 
 export function App() {

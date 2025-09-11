@@ -40,3 +40,13 @@ a {
 input {
   outline: none;
 }
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3.2rem;
+
+  margin: 3.2rem;
+}
