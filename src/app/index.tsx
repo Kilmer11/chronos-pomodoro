@@ -2,9 +2,9 @@ import '../shared/styles/global.css';
 import '../shared/styles/theme.css';
 
 import { Home } from '../Pages/Home';
-import { TaskContextProvider } from './contexts/TaskContext';
+import { TaskContextProvider } from './contexts/TaskContext/taskContextProvider';
 
-export function App() {
+export function Index() {
   return (
     <div className='App'>
       <TaskContextProvider>
