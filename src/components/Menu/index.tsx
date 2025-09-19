@@ -8,6 +8,7 @@ import {
   SunIcon,
 } from 'lucide-react';
 import styles from './styles.module.css';
+import { RouterLink } from '../routerLink';
 
 type AvailableThemes = 'dark' | 'light';
 
@@ -59,16 +60,16 @@ export function Menu() {
   return (
     <nav className={styles.menu}>
       {elements.map(({ element, ariaLabel, title, func }) => (
-        <a
+        <RouterLink
           key={title}
           className={styles.menuLink}
-          href='#'
+          to='/'
           aria-label={ariaLabel}
           title={title}
           onClick={func}
         >
           {React.isValidElement(element) ? element : element[theme]}
-        </a>
+        </RouterLink>
       ))}
     </nav>
   );

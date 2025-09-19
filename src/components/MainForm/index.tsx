@@ -11,6 +11,7 @@ import { useTaskContext } from '../../app/contexts/TaskContext/useTaskContext';
 import { getNextCycle } from '../../shared/utils/getNextCycle';
 import { getNextCycleType } from '../../shared/utils/getNextCycleType';
 import { TaskActionTypes } from '../../app/contexts/TaskContext/taskActions';
+import { showMessage } from '../../adapters/showMessage';
 
 export function MainForm() {
   const { state, dispatch } = useTaskContext();
@@ -20,12 +21,15 @@ export function MainForm() {
 
   function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    showMessage.dismiss();
 
     if (
       taskNameInput.current === null ||
       taskNameInput.current.value.trim() === ''
-    )
+    ) {
+      showMessage.warning('Type the task name');
       return;
+    }
 
     const taskName = taskNameInput.current.value;
 
@@ -34,15 +38,18 @@ export function MainForm() {
       name: taskName,
       duration: state.config[nextCycleType],
       startDate: Date.now(),
-      completedDate: null, // Check later
-      interruptedDate: null, // Check later
+      completedDate: null,
+      interruptedDate: null,
       type: nextCycleType,
     };
 
+    showMessage.success('Task init');
     dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
   }
 
   function handleInterruptTask() {
+    showMessage.dismiss();
+    showMessage.error('Task interrupted');
     dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
   }
 
@@ -52,7 +59,7 @@ export function MainForm() {
         <Input
           id='input'
           type='text'
-          labelText='task'
+          labelText='Task'
           placeholder='Type something'
           ref={taskNameInput}
           disabled={!!state.activeTask}
