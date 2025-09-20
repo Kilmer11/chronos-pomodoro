@@ -16,6 +16,7 @@ type MenuElements = {
   element: ReactElement | { dark: ReactElement; light: ReactElement };
   ariaLabel: string;
   title: string;
+  to?: string;
   func?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 };
 
@@ -42,28 +43,36 @@ export function Menu() {
       element: <HouseIcon />,
       ariaLabel: 'Go to Home Page',
       title: 'Go to Home Page',
+      to: '/',
     },
     {
       element: <HistoryIcon />,
       ariaLabel: 'See History',
       title: 'See History',
+      to: '/history',
     },
-    { element: <SettingsIcon />, ariaLabel: 'Settings', title: 'Settings' },
+    {
+      element: <SettingsIcon />,
+      ariaLabel: 'Settings',
+      title: 'Settings',
+      to: '/settings',
+    },
     {
       element: { dark: <SunIcon />, light: <MoonIcon /> },
       ariaLabel: 'Change Theme',
       title: 'Change Theme',
+
       func: handleThemeChange,
     },
   ];
 
   return (
     <nav className={styles.menu}>
-      {elements.map(({ element, ariaLabel, title, func }) => (
+      {elements.map(({ element, ariaLabel, title, to, func }) => (
         <RouterLink
           key={title}
           className={styles.menuLink}
-          to='/'
+          to={to || ''}
           aria-label={ariaLabel}
           title={title}
           onClick={func}

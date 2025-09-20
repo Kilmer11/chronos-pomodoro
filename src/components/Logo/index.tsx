@@ -5,7 +5,7 @@ import { RouterLink } from '../routerLink';
 export function Logo() {
   return (
     <div className={styles.logo}>
-      <RouterLink to='#' className={styles.logoLink}>
+      <RouterLink to='/' className={styles.logoLink}>
         <TimerIcon />
         <span>Chronos</span>
       </RouterLink>
