@@ -3,6 +3,7 @@ import { Home } from '../../Pages/Home';
 import { AboutPomodoro } from '../../Pages/AboutPomodoro';
 import { NotFound } from '../../Pages/NotFound';
 import { useEffect } from 'react';
+import { History } from '../../Pages/History';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -23,6 +24,10 @@ export function AppRoutes() {
     {
       path: '/about-pomodoro',
       element: <AboutPomodoro />,
+    },
+    {
+      path: '/history',
+      element: <History />,
     },
     {
       path: '*',

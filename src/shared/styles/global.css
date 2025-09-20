@@ -51,3 +51,7 @@ input {
 
   margin: 3.2rem;
 }
+
+table {
+  border-collapse: collapse;
+}
