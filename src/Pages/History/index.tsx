@@ -9,6 +9,7 @@ import { useTaskContext } from '../../app/contexts/TaskContext/useTaskContext';
 import type { TaskModel } from '../../shared/models/taskModel';
 import { formatDate } from '../../shared/utils/formatDate';
 import { getTaskStatus } from '../../shared/utils/getTaskStatus';
+import { taskTypeDictionary } from '../../shared/utils/taskTypeDictionary';
 
 export function History() {
   const { state } = useTaskContext();
@@ -49,7 +50,7 @@ export function History() {
                   <td>{task.duration} min</td>
                   <td>{formatDate(task.startDate)}</td>
                   <td>{getTaskStatus(task, state.activeTask)}</td>
-                  <td>{task.type}</td>
+                  <td>{taskTypeDictionary[task.type]}</td>
                 </tr>
               ))}
             </tbody>
