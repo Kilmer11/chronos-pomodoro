@@ -7,6 +7,8 @@ import { Heading } from '../../components/Heading';
 import { DefaultButton } from '../../components/DefaultButton';
 import { useTaskContext } from '../../app/contexts/TaskContext/useTaskContext';
 import type { TaskModel } from '../../shared/models/taskModel';
+import { formatDate } from '../../shared/utils/formatDate';
+import { getTaskStatus } from '../../shared/utils/getTaskStatus';
 
 export function History() {
   const { state } = useTaskContext();
@@ -45,14 +47,8 @@ export function History() {
                 <tr key={task.id}>
                   <td>{task.name}</td>
                   <td>{task.duration} min</td>
-                  <td>{new Date(task.startDate).toISOString()}</td>
-                  <td>
-                    {task.completedDate
-                      ? 'Completed'
-                      : task.interruptedDate
-                        ? 'Interrupted'
-                        : 'Abandoned'}
-                  </td>
+                  <td>{formatDate(task.startDate)}</td>
+                  <td>{getTaskStatus(task, state.activeTask)}</td>
                   <td>{task.type}</td>
                 </tr>
               ))}
