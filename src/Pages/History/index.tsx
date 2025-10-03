@@ -58,9 +58,15 @@ export function History() {
   useEffect(() => {
     if (!confirmClearHistory) return;
 
-    setConfirmClearHistory(false);
     dispatch({ type: TaskActionTypes.RESET_TASK });
+    setConfirmClearHistory(false);
   }, [confirmClearHistory, dispatch]);
+
+  useEffect(() => {
+    return () => {
+      showMessage.dismiss();
+    };
+  }, []);
 
   function handleResetHistory() {
     showMessage.dismiss();
