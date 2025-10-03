@@ -13,9 +13,11 @@ import { taskTypeDictionary } from '../../shared/utils/taskTypeDictionary';
 import { sortTasks, type SortTasksProps } from '../../shared/utils/sortTask';
 import type { TaskModel } from '../../shared/models/taskModel';
 import { TaskActionTypes } from '../../app/contexts/TaskContext/taskActions';
+import { showMessage } from '../../adapters/showMessage';
 
 export function History() {
   const { state, dispatch } = useTaskContext();
+  const [confirmClearHistory, setConfirmClearHistory] = useState(false);
   const [sortTasksOptions, setSortTasksOptions] = useState<SortTasksProps>(
     () => {
       return {
@@ -53,10 +55,21 @@ export function History() {
     }));
   }, [state.tasks]);
 
-  function handleResetHistory() {
-    if (!confirm('Are you sure about deleting the history?')) return;
+  useEffect(() => {
+    if (!confirmClearHistory) return;
 
+    setConfirmClearHistory(false);
     dispatch({ type: TaskActionTypes.RESET_TASK });
+  }, [confirmClearHistory, dispatch]);
+
+  function handleResetHistory() {
+    showMessage.dismiss();
+    showMessage.confirm(
+      'Are you sure about deleting the history?',
+      confirmation => {
+        setConfirmClearHistory(confirmation);
+      },
+    );
   }
 
   const cabecalhos = [
@@ -92,6 +105,7 @@ export function History() {
                 <tr>
                   {cabecalhos.map(({ label, field }) => (
                     <th
+                      key={field}
                       onClick={() =>
                         handleSortTasksOptions({
                           field: field as keyof TaskModel,
