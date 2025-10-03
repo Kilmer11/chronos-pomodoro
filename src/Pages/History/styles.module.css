@@ -43,3 +43,8 @@
 .thSort:hover {
   filter: brightness(80%);
 }
+
+.text {
+  text-align: center;
+  font-weight: normal;
+}
