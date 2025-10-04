@@ -9,7 +9,7 @@ import { DefaultButton } from '../../components/DefaultButton';
 import { SaveIcon } from 'lucide-react';
 import { useTaskContext } from '../../app/contexts/TaskContext/useTaskContext';
 import { showMessage } from '../../adapters/showMessage';
-import { TaskActionTypes } from '../../app/contexts/TaskContext/taskActions';
+import { TaskActionType } from '../../app/contexts/TaskContext/taskActions';
 
 export function Settings() {
   const { state, dispatch } = useTaskContext();
@@ -52,7 +52,7 @@ export function Settings() {
     }
 
     dispatch({
-      type: TaskActionTypes.CHANGE_SETTINGS,
+      type: TaskActionType.CHANGE_SETTINGS,
       payload: {
         workTime,
         shortBreakTime,

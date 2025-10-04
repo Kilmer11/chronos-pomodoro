@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useTaskContext } from '../../app/contexts/TaskContext/useTaskContext';
 import { getNextCycle } from '../../shared/utils/getNextCycle';
 import { getNextCycleType } from '../../shared/utils/getNextCycleType';
-import { TaskActionTypes } from '../../app/contexts/TaskContext/taskActions';
+import { TaskActionType } from '../../app/contexts/TaskContext/taskActions';
 import { showMessage } from '../../adapters/showMessage';
 
 export function MainForm() {
@@ -45,13 +45,13 @@ export function MainForm() {
     };
 
     showMessage.success('Task init');
-    dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
+    dispatch({ type: TaskActionType.START_TASK, payload: newTask });
   }
 
   function handleInterruptTask() {
     showMessage.dismiss();
     showMessage.error('Task interrupted');
-    dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
+    dispatch({ type: TaskActionType.INTERRUPT_TASK });
   }
 
   return (

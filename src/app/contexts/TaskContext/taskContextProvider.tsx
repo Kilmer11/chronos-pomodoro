@@ -3,7 +3,7 @@ import { TaskContext } from './taskContext';
 import { initialTaskState } from './initialTaskState';
 import { taskReducer } from './taskReducer';
 import { TimerWorkerManager } from '../../../workers/timerWorkerManage';
-import { TaskActionTypes } from './taskActions';
+import { TaskActionType } from './taskActions';
 import { loadBeep } from '../../../shared/utils/loadBeep';
 
 type TaskContextProviderProps = {
@@ -35,11 +35,11 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
         playBeepRef.current();
         playBeepRef.current = null;
       }
-      dispatch({ type: TaskActionTypes.COMPLETE_TASK });
+      dispatch({ type: TaskActionType.COMPLETE_TASK });
       worker.terminate();
     } else {
       dispatch({
-        type: TaskActionTypes.COUNT_DOWN,
+        type: TaskActionType.COUNT_DOWN,
         payload: { secondsRemaining: Number(countDownSeconds) },
       });
     }

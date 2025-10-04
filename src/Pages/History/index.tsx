@@ -12,7 +12,7 @@ import { getTaskStatus } from '../../shared/utils/getTaskStatus';
 import { taskTypeDictionary } from '../../shared/utils/taskTypeDictionary';
 import { sortTasks, type SortTasksProps } from '../../shared/utils/sortTask';
 import type { TaskModel } from '../../shared/models/taskModel';
-import { TaskActionTypes } from '../../app/contexts/TaskContext/taskActions';
+import { TaskActionType } from '../../app/contexts/TaskContext/taskActions';
 import { showMessage } from '../../adapters/showMessage';
 
 export function History() {
@@ -58,7 +58,7 @@ export function History() {
   useEffect(() => {
     if (!confirmClearHistory) return;
 
-    dispatch({ type: TaskActionTypes.RESET_TASK });
+    dispatch({ type: TaskActionType.RESET_TASK });
     setConfirmClearHistory(false);
   }, [confirmClearHistory, dispatch]);
 

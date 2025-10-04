@@ -3,14 +3,14 @@ import { formatSecondsRemaining } from '../../../shared/utils/formatSecondsRemai
 import { getNextCycle } from '../../../shared/utils/getNextCycle';
 import { getSecondsRemaining } from '../../../shared/utils/getSecondsRemaing';
 import { initialTaskState } from './initialTaskState';
-import { TaskActionTypes, type TaskActionModel } from './taskActions';
+import { TaskActionType, type TaskActionModel } from './taskActions';
 
 export function taskReducer(
   state: TaskStateModel,
   action: TaskActionModel,
 ): TaskStateModel {
   switch (action.type) {
-    case TaskActionTypes.START_TASK: {
+    case TaskActionType.START_TASK: {
       const newTask = action.payload;
       const secondsRemaining = getSecondsRemaining(newTask.duration);
       const formattedSecondsRemaining =
@@ -27,7 +27,7 @@ export function taskReducer(
       };
     }
 
-    case TaskActionTypes.INTERRUPT_TASK: {
+    case TaskActionType.INTERRUPT_TASK: {
       return {
         ...state,
         activeTask: null,
@@ -42,11 +42,11 @@ export function taskReducer(
       };
     }
 
-    case TaskActionTypes.RESET_TASK: {
+    case TaskActionType.RESET_TASK: {
       return { ...initialTaskState };
     }
 
-    case TaskActionTypes.COUNT_DOWN: {
+    case TaskActionType.COUNT_DOWN: {
       const secondsRemaining = action.payload.secondsRemaining;
       const formattedSecondsRemaining =
         formatSecondsRemaining(secondsRemaining);
@@ -58,7 +58,7 @@ export function taskReducer(
       };
     }
 
-    case TaskActionTypes.COMPLETE_TASK: {
+    case TaskActionType.COMPLETE_TASK: {
       return {
         ...state,
         activeTask: null,
@@ -73,7 +73,7 @@ export function taskReducer(
       };
     }
 
-    case TaskActionTypes.CHANGE_SETTINGS: {
+    case TaskActionType.CHANGE_SETTINGS: {
       return { ...state, config: { ...action.payload } };
     }
   }
