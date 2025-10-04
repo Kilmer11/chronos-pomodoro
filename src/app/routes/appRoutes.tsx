@@ -4,6 +4,7 @@ import { AboutPomodoro } from '../../Pages/AboutPomodoro';
 import { NotFound } from '../../Pages/NotFound';
 import { useEffect } from 'react';
 import { History } from '../../Pages/History';
+import { Settings } from '../../Pages/Settings';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -28,6 +29,10 @@ export function AppRoutes() {
     {
       path: '/history',
       element: <History />,
+    },
+    {
+      path: '/settings',
+      element: <Settings />,
     },
     {
       path: '*',

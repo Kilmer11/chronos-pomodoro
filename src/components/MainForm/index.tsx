@@ -1,4 +1,4 @@
-import styles from './styles.module.css';
+import styles from '../../shared/styles/form.module.css';
 
 import { useRef } from 'react';
 import { Input } from '../Input';
